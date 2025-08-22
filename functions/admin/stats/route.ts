@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getEdgeOneContent } from '@/lib/edgeone' // 替换为EdgeOne兼容的数据获取方式
+import { getFileContent } from '@/lib/github'
 import { NavigationCategory } from '@/types/navigation'
 
 export const runtime = 'edge'
@@ -7,7 +7,7 @@ export const runtime = 'edge'
 export async function GET() {
   try {
     // 从EdgeOne兼容的存储获取数据
-    const navigationData = await getEdgeOneContent('navsphere/content/navigation.json')
+    const navigationData = await getFileContent('navsphere/content/navigation.json')
     const navigationItems = navigationData.navigationItems || []
     
     // 计算一级分类数量
